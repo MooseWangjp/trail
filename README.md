@@ -1,46 +1,165 @@
 # Trail - 教程内容分享项目
 
-一个致力于分享和整理技术教程、学习资源的项目。
+> 🎯 记录技术知识点 · 分享学习心得 · 共建知识体系
 
-## 📚 项目简介
+---
 
-Trail 是一个教程和教育资源的集合，旨在帮助开发者学习和成长。本仓库包含：
+## 📖 项目介绍
 
-- 详细的步骤教程
-- 代码示例和片段
-- 最佳实践和设计模式
-- 学习资源和参考资料
+Trail 是一个专注于技术教程和学习笔记分享的项目。在这里，我们将零散的知识点系统化地整理成独立的 Markdown 文档，方便查阅、复习和分享。
 
-## 🚀 快速开始
+### ✨ 项目特色
 
-### 前置要求
+- **知识点驱动**：每个知识点都以独立的 `.md` 文件形式存在，便于快速定位和查阅
+- **结构化组织**：按照技术领域和难度等级进行分类管理
+- **持续更新**：随着学习的深入不断补充新的内容
+- **开放共享**：欢迎大家贡献自己的学习笔记和经验总结
 
-- 系统已安装 Git
-- 具备基础的命令行操作知识
+### 🎯 适合人群
 
-### 安装步骤
+- 正在学习新技术的开发者
+- 想要系统整理知识点的学习者
+- 喜欢通过写作加深理解的思考者
+- 愿意分享经验的社区贡献者
+
+---
+
+## 📁 文件目录索引
+
+### 📌 核心文档
+
+- [README.md](./README.md) - 项目说明和导航
+- CONTRIBUTING.md（待创建）- 贡献指南
+- CHANGELOG.md（待创建）- 更新日志
+
+### 📚 教程笔记目录
+
+#### 前端开发
+
+- [原型和原型链](./docs/frontend/原型和原型链/原型和原型链.md)
+<!-- - [CSS 布局技巧](./docs/frontend/css-layout-tips.md)
+- [JavaScript 闭包详解](./docs/frontend/javascript-closures.md)
+- [React Hooks 使用指南](./docs/frontend/react-hooks-guide.md)
+- [Vue 响应式原理](./docs/frontend/vue-reactivity.md) -->
+
+#### 后端开发
+
+<!-- - [Node.js 异步编程](./docs/backend/nodejs-async.md)
+- [Python 装饰器入门](./docs/backend/python-decorators.md)
+- [RESTful API 设计规范](./docs/backend/restful-api-design.md)
+- [数据库索引优化](./docs/backend/database-indexing.md) -->
+
+#### 工具与技能
+
+<!-- - [Git 常用命令速查](./docs/tools/git-commands-cheat.md)
+- [Markdown 写作指南](./docs/tools/markdown-guide.md)
+- [Docker 容器化入门](./docs/tools/docker-intro.md)
+- [Linux 终端技巧](./docs/tools/linux-terminal-tips.md) -->
+
+#### 算法与数据结构
+
+<!-- - [数组与链表](./docs/algorithms/array-linkedlist.md)
+- [栈与队列](./docs/algorithms/stack-queue.md)
+- [排序算法总结](./docs/algorithms/sorting-algorithms.md)
+- [动态规划入门](./docs/algorithms/dp-basics.md) -->
+
+---
+
+## 🚀 如何使用
+
+### 在线阅读
+
+直接在 GitHub 上浏览各个 `.md` 文件，享受流畅的阅读体验。
+
+### 本地阅读
 
 1. 克隆本仓库：
 
 ```bash
-git clone <仓库地址>
+git clone https://github.com/MooseWangjp/trail/tree/main
 cd trail
 ```
 
-2. 浏览可用的教程和资源
+2. 使用你喜欢的 Markdown 阅读器打开对应文件
+   - VS Code + Markdown Preview Enhanced
+   - Typora
+   - Obsidian
 
-## 📖 教程目录
+### 快速查找
 
-<!-- 在此添加你的教程分类 -->
+- 使用 GitHub 的搜索功能查找特定关键词
+- 通过文件目录索引快速定位
+- 利用浏览器的页面搜索（Ctrl+F / Cmd+F）
 
-### 分类一
+---
 
-- 教程名称 - 简要描述
-- 另一个教程 - 涵盖内容
+## 📝 内容规范
 
-### 分类二
+每个知识点文档通常包含以下部分：
 
-- 更多教程即将推出
+1. **标题**：清晰表达知识点主题
+2. **简介**：简短说明这是什么，解决什么问题
+3. **前置知识**：需要了解的基础概念
+4. **核心内容**：详细的讲解和示例
+5. **代码示例**：可运行的代码片段
+6. **注意事项**：容易出错的地方
+7. **扩展阅读**：相关资源链接
+
+---
+
+## 🤝 参与贡献
+
+我们非常欢迎你也来分享自己的学习笔记！
+
+### 贡献流程
+
+1. Fork 本仓库
+2. 在对应的目录下创建新的 `.md` 文件
+3. 按照内容规范编写知识点
+4. 提交 Commit（建议每条笔记一个 commit）
+5. 发起 Pull Request
+
+### 文件命名规范
+
+- 使用小写字母和连字符：`my-topic.md`
+- 文件名要能准确反映内容
+- 统一放在对应的技术分类目录下
+
+### 贡献要求
+
+- ✅ 内容准确，逻辑清晰
+- ✅ 提供必要的代码示例
+- ✅ 标注参考来源（如有）
+- ✅ 遵循 Markdown 格式规范
+
+---
+
+## 📄 开源协议
+
+- MIT License
+
+---
+
+## 🙏 致谢
+
+感谢每一位贡献者的无私分享，让知识的力量得以传递！
+
+---
+
+## 📬 联系方式
+
+- 有问题或建议？欢迎提 Issue
+- GitHub: [@MooseWangjp](https://github.com/MooseWangjp)
+
+---
+
+<div align="center">
+
+**🎉 开始在 Trail 上留下你的学习足迹吧！**
+
+_Last Updated: 2026 年 3 月_
+
+</div>
 
 ## 🔧 使用说明
 
