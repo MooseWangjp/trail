@@ -98,9 +98,9 @@ console.log('同步2: end');
 
 ## 补充说明
 
-### 概念1：Agent
+### Agent
 
-上述提到一个Agent的概念，这里的Agent标识的是JS的执行环境，是JavaScript代码真正云行的“容器”，比如：
+上述提到一个Agent的概念，这里的Agent表示的是JS的执行环境，是JavaScript代码真正运行的“容器”，比如：
 
 - 浏览器主页面（window）: 一个Agent
 - 每个Web woker: 各自一个独立的Agent
