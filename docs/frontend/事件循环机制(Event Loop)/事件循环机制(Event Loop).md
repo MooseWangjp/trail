@@ -90,6 +90,36 @@ console.log('同步2: end');
 
 ![alt text](image.png)
 
+需要思考一个问题，如果这个时候，修改一下宏任务C的延迟时间，改成100ms
+
+```
+setTimeout(() => {  // 宏任务 C（第二个入队的宏任务）
+  console.log('宏任务C: 第二个 setTimeout 0ms');
+}, 100);
+```
+
+那么结果会是怎么样？
+
+![alt text](image-1.png)
+
+这里可以看出宏任务C跑到宏任务B之后执行了，这里一定要捋清楚，宏任务什么时候加入宏任务队列，要根据实际delay的时间来计算，并不是按照顺序，逐个加入宏任务队列的，关键点：**setTimeout 的任务不是立刻入队，而是“等 delay 过去后才加入队列”**
+剪取一段规范对于Timers的官方说明:
+
+> “Let startTime be the current high resolution time...
+
+> Set global's map of active timers[ timerKey ] to startTime plus milliseconds.”
+
+> “wait until ... milliseconds milliseconds have passed...”
+
+> “Let completionStep be an algorithm step which queues a global task on the timer task source...”
+
+可以简单总结为以下几点：
+
+- 调用 setTimeout(fn, delay) 时，浏览器只记录一个“定时器”（active timer），记录到期时间 = 当前时间 + delay。
+- 只有等到 delay 真正过去，浏览器才会执行“queue a global task on the timer task source”，把回调任务真正放入 Event Loop 的 timer task queue。
+- delay=0 的任务几乎立刻就“到期”，立刻被队列。
+- delay=100 的任务要等 100ms 后才被队列。
+
 ## 总结
 
 - 微任务永远在“当前宏任务结束后立即全部清空”，包括中途嵌套产生的，这也是Promise、queueMicrotask、async/await的底层保证。
