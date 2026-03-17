@@ -175,3 +175,50 @@ p.then((value) => {
 因为内容太多，请查看[MyPromise解析](./promise/MyPromise解析.md)
 
 更加完整版的Promise实现可以看看[MyPromise](./promise/MyPromise.js)，这里包含了最核心的几个Promise方法，比如all、race、allSettled、any等
+
+### async/await
+
+async/await 本质是 Promise 的语法糖 + 微任务调度机制
+
+以下几个概念需要先熟悉一下：
+
+- async function: 无论你return什么，函数都会自动包装成一个Promise返回
+- await expr：相当于“暂停当前函数执行，直到expr这个Promise变成fulfilled或者rejected”，然后把结果塞回来继续执行
+- 所有“暂停-->恢复”都依赖事件循环的微任务队列，不阻塞主线程
+
+现代引擎（V8、SpiderMonkey、JavaScriptCore）有两种实现方式
+
+【规范层面和编译器层面】
+
+ECMAScript 规范把 async/await 直接转译成 Generator + Promise 的形式（这就是为什么我们可以用 regenerator 做 polyfill）
+
+1. async function 被编译成一个 Generator 函数（yield 代替 await）。
+2. 引擎生成一个 自动执行器（类似 co 库或 spawn 函数）。
+3. 每次 yield promise 时：
+   - 把后续代码“挂起”。
+   - 等 promise resolved → 调用 gen.next(value) 恢复。
+     reject 则调用 gen.throw(err)。
+
+这正是“暂停-恢复”的根本来源
+
+【真实引擎底层（V8 为例，2024-2026 年实现）】
+
+V8 不依赖 Generator，而是直接编译成状态机（State Machine）：
+
+- 调用 async 函数时，在堆（heap） 上创建一个内部对象（保存所有局部变量、当前 state、Promise）。
+- 遇到 await：
+  - 当前状态（state=0）和所有局部变量保存到堆。
+  - 释放调用栈（主线程继续干别的）。
+  - 给 await 后面的 Promise 注册一个 PromiseReaction（微任务）。
+
+- Promise 完成时：
+  - 微任务触发 → 从堆取出状态机 → 新建栈帧 → 切换 state → 继续执行。
+
+- 多个 await = 多个状态跳转（switch-case）。
+
+这就是为什么 await 可以“暂停”却不阻塞：所有上下文都在堆上，不是栈上。
+性能上：V8 还有 “Fast Async” 优化，比手写 Promise 链还快。
+
+我们通过**Generator+自动执行器**的方案来模拟手写一个async/await，来理解一下async/await的实现原理
+
+
