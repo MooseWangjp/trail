@@ -100,5 +100,3 @@
 | `docker compose build` | 重新构建服务镜像 |
 | `docker compose pull` | 拉取服务依赖的最新镜像 |
 | `docker compose restart` | 重启所有服务 |
-
-如果后续需要更深入地了解某个命令的参数（例如 `docker run` 的端口映射、挂载卷选项），随时可以问我。
